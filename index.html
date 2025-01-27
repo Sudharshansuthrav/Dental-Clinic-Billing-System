@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Billing System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dental Clinic Billing System</h1>
+        <form id="billingForm">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" required>
+
+            <label for="service">Service Rendered:</label>
+            <select id="service" required>
+                <option value="">Select Service</option>
+                <option value="Cleaning">Cleaning - $50</option>
+                <option value="Filling">Filling - $100</option>
+                <option value="Root Canal">Root Canal - $300</option>
+                <option value="Extraction">Extraction - $150</option>
+            </select>
+
+            <button type="submit">Generate Bill</button>
+        </form>
+
+        <div id="billOutput" class="bill-output"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
