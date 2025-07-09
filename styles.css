@@ -1,0 +1,521 @@
+/* === Global styles === */
+:root {
+    --primary-color: #4285f4;
+    --secondary-color: #34a853;
+    --accent-color: #fbbc05;
+    --danger-color: #ea4335;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    --border-radius: 6px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--gray-100);
+}
+
+h1, h2, h3, h4 {
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* === Container and Layout === */
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: white;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--gray-700);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+nav ul li a.active {
+    color: var(--primary-color);
+}
+
+nav ul li a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.user-avatar i {
+    font-size: 1.2rem;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: -5px;
+}
+
+.user-role {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--gray-100);
+}
+
+/* === Billing Section === */
+.billing-section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.billing-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+    .billing-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .bill-summary {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .billing-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .bill-summary {
+        grid-column: span 1;
+    }
+}
+
+.patient-info, .treatment-selection, .bill-summary {
+    background-color: var(--gray-100);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+/* === Form Elements === */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.patient-details {
+    margin-top: 1rem;
+}
+
+/* === Buttons === */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.7rem 1.5rem;
+}
+
+.primary-btn:hover {
+    background-color: #3367d6;
+}
+
+.secondary-btn {
+    background-color: var(--gray-200);
+    color: var(--gray-800);
+    padding: 0.7rem 1.5rem;
+}
+
+.secondary-btn:hover {
+    background-color: var(--gray-300);
+}
+
+.action-btn {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
+.action-btn:hover {
+    background-color: var(--gray-300);
+}
+
+#search-patient {
+    width: auto;
+    margin-left: 0.5rem;
+}
+
+/* === Tables === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-300);
+}
+
+th {
+    background-color: var(--gray-200);
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+tbody tr:hover {
+    background-color: var(--gray-100);
+}
+
+tfoot tr {
+    background-color: var(--gray-100);
+    font-weight: 500;
+}
+
+tfoot td {
+    border-top: 2px solid var(--gray-300);
+}
+
+.total-row {
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.total-row td {
+    border-top: 2px solid var(--gray-600);
+}
+
+/* === Bill Items === */
+.bill-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+/* === Payment Options === */
+.payment-options {
+    margin: 1.5rem 0;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+}
+
+/* === Recent Bills === */
+.recent-bills {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+}
+
+.status {
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status.paid {
+    background-color: rgba(52, 168, 83, 0.15);
+    color: var(--secondary-color);
+}
+
+.status.pending {
+    background-color: rgba(251, 188, 5, 0.15);
+    color: #d09000;
+}
+
+.status.cancelled {
+    background-color: rgba(234, 67, 53, 0.15);
+    color: var(--danger-color);
+}
+
+/* === Modal === */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    width: 70%;
+    max-width: 800px;
+    animation: modalOpen 0.3s;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-300);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin-bottom: 0;
+}
+
+.close-modal {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--gray-600);
+}
+
+.close-modal:hover {
+    color: var(--danger-color);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--gray-300);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* === Receipt Styling === */
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.receipt-meta {
+    text-align: right;
+}
+
+.receipt-patient-info, .receipt-items, .receipt-payment {
+    margin-bottom: 1.5rem;
+}
+
+.receipt-footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+/* === Responsive Design === */
+@media (max-width: 992px) {
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .billing-container {
+        grid-template-columns: 1fr;
+    }
+    
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .logo {
+        margin-bottom: 1rem;
+    }
+    
+    nav ul {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}

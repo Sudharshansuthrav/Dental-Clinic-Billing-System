@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Treatment Billing System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-tooth"></i>
+                <h1>SmileCare Dental Clinic</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Dashboard</a></li>
+                    <li><a href="#">Patients</a></li>
+                    <li><a href="#">Appointments</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+                <div class="user-details">
+                    <p class="user-name">Dr. Sarah Johnson</p>
+                    <p class="user-role">Administrator</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="billing-section">
+                <h2>Treatment Billing</h2>
+                <div class="billing-container">
+                    <div class="patient-info">
+                        <h3>Patient Information</h3>
+                        <div class="form-group">
+                            <label for="patient-id">Patient ID:</label>
+                            <input type="text" id="patient-id" placeholder="Enter patient ID">
+                            <button id="search-patient" class="secondary-btn">Search</button>
+                        </div>
+                        <div class="patient-details">
+                            <div class="form-group">
+                                <label for="patient-name">Name:</label>
+                                <input type="text" id="patient-name" placeholder="Patient name">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-age">Age:</label>
+                                <input type="number" id="patient-age" placeholder="Age">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-gender">Gender:</label>
+                                <select id="patient-gender">
+                                    <option value="" selected disabled>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-phone">Phone:</label>
+                                <input type="text" id="patient-phone"" pattern="[0-9]{10}" maxlength="10"placeholder="Phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-email">Email:</label>
+                                <input type="email" id="patient-email" placeholder="Email address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="treatment-selection">
+                        <h3>Treatment Selection</h3>
+                        <div class="form-group">
+                            <label for="treatment-category">Category:</label>
+                            <select id="treatment-category">
+                                <option value="" selected disabled>Select category</option>
+                                <option value="general">General Dentistry</option>
+                                <option value="cosmetic">Cosmetic Dentistry</option>
+                                <option value="orthodontic">Orthodontic Treatment</option>
+                                <option value="surgical">Oral Surgery</option>
+                                <option value="pediatric">Pediatric Dentistry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatment-type">Treatment:</label>
+                            <select id="treatment-type" disabled>
+                                <option value="" selected disabled>Select treatment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatment-price">Price ($):</label>
+                            <input type="number" id="treatment-price" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatment-discount">Discount (%):</label>
+                            <input type="number" id="treatment-discount" min="0" max="100" value="0">
+                        </div>
+                        <button id="add-treatment" class="primary-btn">Add Treatment</button>
+                    </div>
+
+                    <div class="bill-summary">
+                        <h3>Bill Summary</h3>
+                        <div class="bill-items">
+                            <table id="bill-table">
+                                <thead>
+                                    <tr>
+                                        <th>Treatment</th>
+                                        <th>Price ($)</th>
+                                        <th>Discount (%)</th>
+                                        <th>Final Price ($)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bill-items-body">
+                                    <!-- Bill items will be added here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3">Subtotal</td>
+                                        <td id="subtotal">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Tax (10%)</td>
+                                        <td id="tax">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td colspan="3">Total</td>
+                                        <td id="total">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment-options">
+                            <h4>Payment Method</h4>
+                            <div class="payment-methods">
+                                <div class="payment-method">
+                                    <input type="radio" id="payment-cash" name="payment-method" value="cash" checked>
+                                    <label for="payment-cash">Cash</label>
+                                </div>
+                                <div class="payment-method">
+                                    <input type="radio" id="payment-card" name="payment-method" value="card">
+                                    <label for="payment-card">Card</label>
+                                </div>
+                                <div class="payment-method">
+                                    <input type="radio" id="payment-insurance" name="payment-method" value="insurance">
+                                    <label for="payment-insurance">Insurance</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bill-notes">Notes:</label>
+                            <textarea id="bill-notes" placeholder="Any additional notes..."></textarea>
+                        </div>
+                        <div class="bill-actions">
+                            <button id="generate-bill" class="primary-btn">Generate Bill</button>
+                            <button id="clear-bill" class="secondary-btn">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-bills">
+                <h3>Recent Bills</h3>
+                <table id="recent-bills-table">
+                    <thead>
+                        <tr>
+                            <th>Bill ID</th>
+                            <th>Patient Name</th>
+                            <th>Date</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B-2025-001</td>
+                            <td>John Smith</td>
+                            <td>01/05/2025</td>
+                            <td>$245.00</td>
+                            <td><span class="status paid">Paid</span></td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>B-2025-002</td>
+                            <td>Mary Johnson</td>
+                            <td>30/04/2025</td>
+                            <td>$1,200.00</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>B-2025-003</td>
+                            <td>Robert Lee</td>
+                            <td>30/04/2025</td>
+                            <td>$550.00</td>
+                            <td><span class="status paid">Paid</span></td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Bill Receipt Modal -->
+    <div id="bill-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Bill Receipt</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="receipt-header">
+                    <div class="clinic-info">
+                        <h2>SmileCare Dental Clinic</h2>
+                        <p>123 Dental Street, Medical District</p>
+                        <p>City, State, ZIP</p>
+                        <p>Phone: (555) 123-4567</p>
+                        <p>Email: info@smilecare.example</p>
+                    </div>
+                    <div class="receipt-meta">
+                        <p><strong>Receipt #:</strong> <span id="receipt-id"></span></p>
+                        <p><strong>Date:</strong> <span id="receipt-date"></span></p>
+                    </div>
+                </div>
+                <div class="receipt-patient-info">
+                    <h3>Patient Information</h3>
+                    <p><strong>Name:</strong> <span id="receipt-patient-name"></span></p>
+                    <p><strong>ID:</strong> <span id="receipt-patient-id"></span></p>
+                    <p><strong>Phone:</strong> <span id="receipt-patient-phone"></span></p>
+                </div>
+                <div class="receipt-items">
+                    <h3>Treatment Details</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Treatment</th>
+                                <th>Price ($)</th>
+                                <th>Discount (%)</th>
+                                <th>Final Price ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="receipt-items-body">
+                            <!-- Receipt items will be added here -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Subtotal</td>
+                                <td id="receipt-subtotal"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Tax (10%)</td>
+                                <td id="receipt-tax"></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="3">Total</td>
+                                <td id="receipt-total"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="receipt-payment">
+                    <p><strong>Payment Method:</strong> <span id="receipt-payment-method"></span></p>
+                    <p><strong>Notes:</strong> <span id="receipt-notes"></span></p>
+                </div>
+                <div class="receipt-footer">
+                    <p>Thank you for choosing SmileCare Dental Clinic!</p>
+                    <p>For any queries regarding this bill, please contact our billing department.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="print-receipt" class="primary-btn">Print Receipt</button>
+                <button id="email-receipt" class="secondary-btn">Email Receipt</button>
+                <button id="close-receipt" class="secondary-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
